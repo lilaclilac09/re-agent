@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+*.re_notes.json
+.env
+.DS_Store
