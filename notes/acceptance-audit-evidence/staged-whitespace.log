@@ -1,0 +1,5 @@
+$ git diff --cached --check
+working directory: /home/ubuntu/rollout/re-agent
+
+
+exit code: 0

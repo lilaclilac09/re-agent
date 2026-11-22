@@ -1,0 +1,27 @@
+$ /home/ubuntu/accept-kit/audit/re-agent/venv/bin/python -m unittest discover -s tests -v
+working directory: /home/ubuntu/rollout/re-agent
+
+test_all_five_phases_get_their_own_budget (test_acceptance_regressions.AgentMockBridgeTests.test_all_five_phases_get_their_own_budget) ... ok
+test_bridge_failure_stops_before_model_call (test_acceptance_regressions.AgentMockBridgeTests.test_bridge_failure_stops_before_model_call) ... ok
+test_default_mutation_previews_do_not_commit (test_acceptance_regressions.AgentMockBridgeTests.test_default_mutation_previews_do_not_commit) ... ok
+test_tool_write_is_in_next_turn_system_notebook (test_acceptance_regressions.AgentMockBridgeTests.test_tool_write_is_in_next_turn_system_notebook) ... ok
+test_unknown_tool_reports_error (test_acceptance_regressions.AgentMockBridgeTests.test_unknown_tool_reports_error) ... ok
+test_zero_budget (test_acceptance_regressions.AgentMockBridgeTests.test_zero_budget) ... ok
+test_empty_prompt (test_acceptance_regressions.EntrypointTests.test_empty_prompt) ... ok
+test_help (test_acceptance_regressions.EntrypointTests.test_help) ... ok
+test_missing_key (test_acceptance_regressions.EntrypointTests.test_missing_key) ... ok
+test_mock_import (test_acceptance_regressions.EntrypointTests.test_mock_import) ... ok
+test_oneshot_imports_existing_packages (test_acceptance_regressions.EntrypointTests.test_oneshot_imports_existing_packages) ... ok
+test_failed_write_does_not_invent_a_note (test_acceptance_regressions.NotebookMirrorTests.test_failed_write_does_not_invent_a_note) ... ok
+test_hypothesis_mirror (test_acceptance_regressions.NotebookMirrorTests.test_hypothesis_mirror) ... ok
+test_binary_kind_roundtrips (test_acceptance_regressions.NotebookStorageTests.test_binary_kind_roundtrips) ... ok
+test_corrupt_sidecar_is_not_silent_success (test_acceptance_regressions.NotebookStorageTests.test_corrupt_sidecar_is_not_silent_success) ... ok
+test_empty (test_acceptance_regressions.NotebookStorageTests.test_empty) ... ok
+test_function_hypothesis_export (test_acceptance_regressions.NotebookStorageTests.test_function_hypothesis_export) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.869s
+
+OK
+
+exit code: 0

@@ -1,0 +1,14 @@
+$ env -u ANTHROPIC_API_KEY python3 run_agent.py --mock
+working directory: /home/ubuntu/rollout/re-agent
+
+[*] starting mock bridge server...
+Traceback (most recent call last):
+  File "/home/ubuntu/rollout/re-agent/run_agent.py", line 121, in <module>
+    main()
+  File "/home/ubuntu/rollout/re-agent/run_agent.py", line 69, in main
+    _start_mock()
+  File "/home/ubuntu/rollout/re-agent/run_agent.py", line 41, in _start_mock
+    from re_agent.bn_bridge.mock import run as mock_run
+ModuleNotFoundError: No module named 're_agent'
+
+exit code: 1

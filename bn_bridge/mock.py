@@ -5,7 +5,7 @@ Serves a synthetic stealer-like binary session so the agent loop can be
 developed and tested end-to-end on any machine.
 
 Usage:
-    python -m re_agent.bn_bridge.mock          # starts mock on :7734
+    python -m bn_bridge.mock                   # starts mock on :7734
     python run_agent.py --bridge http://127.0.0.1:7734 --mock
 """
 
@@ -601,7 +601,7 @@ class MockHandler(BaseHTTPRequestHandler):
             if scope == "function":
                 _notes_store["function_notes"].setdefault(subject, []).append(note)
             else:
-                _notes_store.setdefault(kind + "s", []).append(note)
+                _notes_store.setdefault("hypotheses" if kind == "hypothesis" else kind + "s", []).append(note)
             _notes_store["timeline"].append({
                 "step": len(_notes_store["timeline"]) + 1,
                 "action": f"write_note:{kind}",

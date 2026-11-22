@@ -1,5 +1,7 @@
 # re-agent
 
+Status: LOCAL ONLY — offline synthetic-bridge/regression checks only, not live Claude or Binary Ninja verification; next human action: configure Claude access in a licensed Binary Ninja environment and verify an authorized sample without applying mutations by default.
+
 A reverse engineering agent that gives Claude a **live, queryable model of a binary** instead of screenshots and vibes.
 
 The agent connects to a running [Binary Ninja](https://binary.ninja) session through a local HTTP bridge, then uses Claude's tool-calling API to navigate the binary systematically — inspecting functions, tracing call graphs, reading decompiled code, and writing structured notes — until it can answer a question about the binary with evidence.
@@ -39,8 +41,8 @@ This project wires Claude directly into Binary Ninja's analysis engine so the ag
 │  REAgent                                │
 │  ├─ 17 Claude tools → bridge calls     │
 │  ├─ tool-calling loop (up to 40 turns) │
-│  └─ Notebook injected into system      │
-│     prompt each turn (no amnesia)      │
+│  └─ Notebook summary refreshed in      │
+│     the system prompt each turn       │
 └────────────────┬────────────────────────┘
                  │
                  ▼
@@ -56,7 +58,7 @@ This project wires Claude directly into Binary Ninja's analysis engine so the ag
 └─────────────────────────────────────────┘
 ```
 
-The agent maintains a **sidecar notebook** (`.re_notes.json` next to the binary) that stores facts, hypotheses, unknowns, and a step-by-step timeline. This notebook is injected into the system prompt each turn so Claude never loses context between tool calls.
+The agent maintains a **sidecar notebook** (`.re_notes.json` next to the binary) that stores facts, hypotheses, unknowns, and a step-by-step timeline. A compact summary is refreshed from the bridge before each model turn; it is not a guarantee that every historical detail fits in model context.
 
 ---
 
@@ -90,7 +92,9 @@ export ANTHROPIC_API_KEY=sk-...
 python run_agent.py --mock
 ```
 
-The mock simulates a Chrome credential stealer: `sqlite3_open` → `CryptUnprotectData` → `HttpSendRequestA` → `/gate.php`. The agent will find the collection path, the DPAPI decryption, and the HTTP exfil in roughly 5 phases.
+The mock contains static analysis fixtures representing a Chrome credential stealer: `sqlite3_open` → `CryptUnprotectData` → `HttpSendRequestA` → `/gate.php`. These are synthetic strings/pseudocode, not executable harvesting behavior. The five-phase workflow is intended to investigate that chain; actual Claude conclusions were not verified by the offline audit.
+
+Offline regressions: `python -m unittest discover -s tests -v` after installing the existing requirements. These use a loopback mock bridge and model-response fixtures, not a live model or real binary. See [the audit and committed command logs](notes/acceptance-audit-2026-11-22.md) for scope and remaining risks. Existing sidecars with the old misspelled `hypothesiss` key are not automatically migrated; review them before relying on recovered history.
 
 ---
 

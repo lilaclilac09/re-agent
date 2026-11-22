@@ -1,0 +1,23 @@
+$ python3 -c 'from pathlib import Path
+from tempfile import TemporaryDirectory
+from bn_bridge import notes
+root=Path('"'"'/home/ubuntu/accept-kit/audit/re-agent'"'"'); root.mkdir(exist_ok=True)
+with TemporaryDirectory(dir=root) as d:
+ p=str(Path(d)/'"'"'synthetic-sample'"'"')
+ notes.write_note(p,'"'"'binary'"'"','"'"'binary'"'"','"'"'fact'"'"','"'"'synthetic baseline fact'"'"')
+ print('"'"'Stored facts:'"'"',len(notes.list_notes(p)['"'"'facts'"'"']),flush=True)
+ notes.write_note(p,'"'"'binary'"'"','"'"'binary'"'"','"'"'hypothesis'"'"','"'"'synthetic hypothesis'"'"')
+ print('"'"'Stored hypotheses visible to reader:'"'"',len(notes.list_notes(p)['"'"'hypotheses'"'"']),flush=True)
+ print('"'"'Unexpected misspelled storage bucket present:'"'"', '"'"'hypothesiss'"'"' in notes.load_notes(p),flush=True)
+ assert len(notes.list_notes(p)['"'"'hypotheses'"'"'])==1, '"'"'hypothesis write is lost from the documented hypotheses read/export bucket'"'"'
+'
+working directory: /home/ubuntu/rollout/re-agent
+
+Stored facts: 1
+Stored hypotheses visible to reader: 0
+Unexpected misspelled storage bucket present: True
+Traceback (most recent call last):
+  File "<string>", line 12, in <module>
+AssertionError: hypothesis write is lost from the documented hypotheses read/export bucket
+
+exit code: 1

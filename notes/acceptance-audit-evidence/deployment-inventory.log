@@ -1,0 +1,8 @@
+$ python3 -c 'import json,subprocess; m=json.loads(subprocess.check_output(["gh","api","repos/lilaclilac09/re-agent"],text=True)); print(json.dumps({k:m[k] for k in ["private","homepage","has_pages"]})); print("GitHub deployments:",len(json.loads(subprocess.check_output(["gh","api","repos/lilaclilac09/re-agent/deployments?per_page=100"],text=True)))); print("README describes localhost:7734, not a public product deployment; linked binary.ninja is the third-party host, not this agent service.")'
+working directory: /home/ubuntu/rollout/re-agent
+
+{"private": false, "homepage": null, "has_pages": false}
+GitHub deployments: 0
+README describes localhost:7734, not a public product deployment; linked binary.ninja is the third-party host, not this agent service.
+
+exit code: 0

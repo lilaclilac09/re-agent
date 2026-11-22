@@ -60,7 +60,7 @@ class Notebook:
         if scope == "function" and subject:
             self._mirror["function_notes"].setdefault(subject, []).append(note)
         else:
-            self._mirror.setdefault(kind + "s", []).append(note)
+            self._mirror.setdefault("hypotheses" if kind == "hypothesis" else kind + "s", []).append(note)
 
         return result
 

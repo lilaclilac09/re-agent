@@ -380,7 +380,8 @@ class REAgent:
         """
         self.messages.append({"role": "user", "content": user_message})
 
-        while self._turn < max_turns:
+        turn_limit = self._turn + max_turns
+        while self._turn < turn_limit:
             self._turn += 1
 
             if self.verbose:
@@ -388,6 +389,7 @@ class REAgent:
                 print(f"[turn {self._turn}]", flush=True)
 
             # inject notebook summary into system for this call
+            self.notebook.get_all()
             system_with_nb = self.system + "\n\n--- CURRENT NOTEBOOK ---\n" + self.notebook.summary_text()
 
             response = self.client.messages.create(

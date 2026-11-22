@@ -1,0 +1,8 @@
+$ python3 /home/ubuntu/accept-kit/audit/check-merged-prs.py re-agent
+working directory: /home/ubuntu/rollout/re-agent
+
+PR #1: checker exit 0; ACCEPTANCE.md: evidence closer complete
+PR #1: merge ancestry exit 0
+Files: .cursor/rules/acceptance.mdc, .github/pull_request_template.md, .github/workflows/acceptance.yml, ACCEPTANCE.md, AGENTS.md, CLAUDE.md, scripts/check_acceptance.py
+
+exit code: 0
