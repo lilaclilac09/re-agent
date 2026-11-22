@@ -1,0 +1,9 @@
+$ env -u ANTHROPIC_API_KEY /home/ubuntu/accept-kit/audit/re-agent/venv/bin/python run_agent.py --mock
+working directory: /home/ubuntu/rollout/re-agent
+
+[!] ANTHROPIC_API_KEY not set
+[*] starting mock bridge server...
+[mock] RE Agent bridge running on http://127.0.0.1:7734
+[mock] synthetic stealer binary loaded — no BN required
+
+exit code: 1

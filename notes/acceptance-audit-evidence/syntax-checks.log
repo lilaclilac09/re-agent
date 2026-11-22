@@ -1,0 +1,8 @@
+$ /home/ubuntu/accept-kit/audit/re-agent/venv/bin/python -c 'from pathlib import Path; files=sorted(Path(".").rglob("*.py")); [compile(p.read_text(),str(p),"exec") for p in files]; print(f"PASS: {len(files)} Python files compile in memory")'
+working directory: /home/ubuntu/rollout/re-agent
+
+bn_bridge/plugin.py:7: SyntaxWarning: invalid escape sequence '\B'
+  Windows: %APPDATA%\Binary Ninja\plugins\
+PASS: 15 Python files compile in memory
+
+exit code: 0

@@ -1,0 +1,11 @@
+$ python3 -c 'import pathlib,re,subprocess
+r=subprocess.run(['"'"'python3'"'"','"'"'scripts/check_acceptance.py'"'"','"'"'/home/ubuntu/accept-kit/audit/re-agent.md'"'"']); assert r.returncode==0
+assert not re.search(r'"'"'should work|should be fixed|looks good'"'"',pathlib.Path('"'"'README.md'"'"').read_text(),re.I)
+print('"'"'PASS: README contains no forbidden unsupported completion phrases'"'"',flush=True)
+'
+working directory: /home/ubuntu/rollout/re-agent
+
+ACCEPTANCE.md: evidence closer complete
+PASS: README contains no forbidden unsupported completion phrases
+
+exit code: 0

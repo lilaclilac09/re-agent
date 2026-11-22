@@ -1,0 +1,8 @@
+$ /home/ubuntu/accept-kit/audit/re-agent/venv/bin/python -c 'import binaryninja'
+working directory: /home/ubuntu/rollout/re-agent
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'binaryninja'
+
+exit code: 1

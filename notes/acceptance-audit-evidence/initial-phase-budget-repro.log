@@ -1,0 +1,31 @@
+$ /home/ubuntu/accept-kit/audit/re-agent/venv/bin/python -c 'from contextlib import redirect_stdout
+from http.server import HTTPServer
+import io,threading
+from types import SimpleNamespace as NS
+from unittest.mock import Mock,patch
+from agent.client import REAgent
+from agent.loops.triage import run_triage
+from bn_bridge.mock import MockHandler
+server=HTTPServer(('"'"'127.0.0.1'"'"',0),MockHandler); thread=threading.Thread(target=server.serve_forever,daemon=True); thread.start()
+api=Mock(); api.messages.create.side_effect=[NS(stop_reason='"'"'end_turn'"'"',content=[NS(type='"'"'text'"'"',text='"'"'synthetic phase response'"'"')]) for _ in range(5)]
+try:
+ with patch('"'"'agent.client.anthropic.Anthropic'"'"',return_value=api), redirect_stdout(io.StringIO()):
+  agent=REAgent(f'"'"'http://127.0.0.1:{server.server_port}'"'"','"'"'Offline budget fixture'"'"',verbose=False)
+  report=run_triage(agent,max_turns_per_phase=1)
+ print('"'"'Requested phases: 5; budget per phase: 1'"'"',flush=True)
+ print('"'"'Actual model-fixture calls:'"'"',api.messages.create.call_count,flush=True)
+ print('"'"'Final report:'"'"',report,flush=True)
+ assert api.messages.create.call_count==5, '"'"'global turn count prematurely skips later phases'"'"'
+finally:
+ server.shutdown();server.server_close();thread.join()
+'
+working directory: /home/ubuntu/rollout/re-agent
+
+Requested phases: 5; budget per phase: 1
+Actual model-fixture calls: 1
+Final report: [agent] turn budget (1) exhausted.
+Traceback (most recent call last):
+  File "<string>", line 18, in <module>
+AssertionError: global turn count prematurely skips later phases
+
+exit code: 1

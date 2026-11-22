@@ -1,0 +1,11 @@
+$ python3 -c 'import importlib.util,os,pathlib; print("Repository environment loader files:",[p.name for p in pathlib.Path(".").iterdir() if p.name in [".envrc","pyproject.toml",".venv","venv"]]); print("Modules:",{k:importlib.util.find_spec(k) is not None for k in ["anthropic","requests","binaryninja","re_agent"]}); print("Top-level agent package present:",pathlib.Path("agent/__init__.py").is_file()); print("Top-level bn_bridge package present:",pathlib.Path("bn_bridge/__init__.py").is_file()); print("ANTHROPIC_API_KEY configured:",bool(os.environ.get("ANTHROPIC_API_KEY"))); print("Plan: isolate declared Python dependencies in the audit workspace; do not request credentials or emulate a licensed BN host.")'
+working directory: /home/ubuntu/rollout/re-agent
+
+Repository environment loader files: []
+Modules: {'anthropic': False, 'requests': True, 'binaryninja': False, 're_agent': False}
+Top-level agent package present: True
+Top-level bn_bridge package present: True
+ANTHROPIC_API_KEY configured: False
+Plan: isolate declared Python dependencies in the audit workspace; do not request credentials or emulate a licensed BN host.
+
+exit code: 0

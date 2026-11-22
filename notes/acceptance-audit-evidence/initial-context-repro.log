@@ -1,0 +1,12 @@
+$ /home/ubuntu/accept-kit/audit/re-agent/venv/bin/python /home/ubuntu/accept-kit/audit/repro-re-agent-context.py
+working directory: /home/ubuntu/rollout/re-agent
+
+Fact count stored by mock HTTP bridge: 1
+Fact present in next-turn system notebook: False
+Traceback (most recent call last):
+  File "/home/ubuntu/accept-kit/audit/repro-re-agent-context.py", line 26, in <module>
+    assert present, 'bridge write succeeds but next-turn system notebook remains stale'
+           ^^^^^^^
+AssertionError: bridge write succeeds but next-turn system notebook remains stale
+
+exit code: 1

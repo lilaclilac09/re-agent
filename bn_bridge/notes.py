@@ -82,7 +82,7 @@ def write_note(
         fn_notes = nb.setdefault("function_notes", {})
         fn_notes.setdefault(subject, []).append(note)
     else:
-        bucket = nb.setdefault(kind + "s", [])  # facts, hypotheses, unknowns, todos
+        bucket = nb.setdefault("hypotheses" if kind == "hypothesis" else kind + "s", [])
         bucket.append(note)
 
     # always append to timeline

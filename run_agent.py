@@ -38,7 +38,7 @@ def _load_prompt(name: str) -> str:
 
 
 def _start_mock(port: int = 7734) -> None:
-    from re_agent.bn_bridge.mock import run as mock_run
+    from bn_bridge.mock import run as mock_run
     t = threading.Thread(target=mock_run, args=(port,), daemon=True)
     t.start()
     import time
@@ -84,8 +84,8 @@ def main() -> None:
         print("[!] ANTHROPIC_API_KEY not set", file=sys.stderr)
         sys.exit(1)
 
-    from re_agent.agent.client import REAgent
-    from re_agent.agent.loops.triage import run_triage, run_single_objective
+    from agent.client import REAgent
+    from agent.loops.triage import run_triage, run_single_objective
 
     agent = REAgent(
         bridge_url=args.bridge,
